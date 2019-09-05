@@ -1,6 +1,6 @@
 # kf-lambda-member-update
 
-This lambda receive events from the SQS queue that contains users from persona.
+This lambda receive events from the SQS queue that contains users from kf-persona.
 
 It takes into account two environment variables :
 - es_host : Elastic Search cluster Host (by default, localhost)
