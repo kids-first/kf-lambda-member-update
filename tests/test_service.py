@@ -18,8 +18,8 @@ def test_handler():
                 "messageId": "2e1424d4-f796-459a-8184-9c92662be6da",
                 "body": json.dumps(
                     {"id": "def", "firstName": "Jane", "lastName": "River", "interests": ["Volley Ball", "Natation"],
-                     "virtualStudies": [{"id": "1", "name": "Virtual Study 1"},
-                                        {"id": "12", "name": "Virtual Study 2"}]}),
+                     "virtualStudies": [{"_id": "1", "name": "Virtual Study 1"},
+                                        {"_id": "12", "name": "Virtual Study 2"}]}),
             }
         ]
     }, {})

@@ -25,7 +25,7 @@ def transform(event):
         yield {
             '_index': 'member',
             '_type': 'member',
-            '_id': payload['id'],
+            '_id': payload['_id'],
             'doc': {
                 'firstName': payload.get('firstName'),
                 'lastName': payload.get('lastName'),
