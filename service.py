@@ -29,6 +29,11 @@ def transform(event):
             'doc': {
                 'firstName': payload.get('firstName'),
                 'lastName': payload.get('lastName'),
+                'email': payload.get('email'),
+                'institutionalEmail': payload.get('institutionalEmail'),
+                'acceptedTerms': payload.get('acceptedTerms'),
+                'isPublic': payload.get('isPublic'),
+                'roles': payload.get('roles'),
                 'title': payload.get('title'),
                 'jobTitle': payload.get('jobTitle'),
                 'institution': payload.get('institution'),

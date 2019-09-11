@@ -11,6 +11,9 @@ MEMBER_INDEX = {
                 "acceptedTerms": {
                     "type": "boolean"
                 },
+                "isPublic": {
+                    "type": "boolean"
+                },
                 "roles": {
                     "type": "keyword"
                 },
