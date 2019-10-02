@@ -31,7 +31,7 @@ def transform(event):
             'email': payload.get('email'),
             'institutionalEmail': payload.get('institutionalEmail'),
             'acceptedTerms': payload.get('acceptedTerms'),
-            'isPublic': payload.get('isPublic') or False,
+            'isPublic': payload.get('isPublic', False),
             'roles': payload.get('roles'),
             'title': payload.get('title'),
             'jobTitle': payload.get('jobTitle'),
