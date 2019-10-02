@@ -1,5 +1,7 @@
 # kf-lambda-member-update
 
+[![CircleCI](https://circleci.com/gh/kids-first/kf-lambda-member-update.svg?style=svg)](https://circleci.com/gh/kids-first/kf-lambda-member-update)
+
 This lambda receive events from the SQS queue that contains users from kf-persona.
 
 It takes into account two environment variables :
