@@ -6,13 +6,16 @@ It takes into account two environment variables :
 - es_host : Elastic Search cluster Host (by default, localhost)
 - es_port : Elastic Search cluster Port (by default, 9200)
 
+The lambda will try to create the index if it does not exists.
+
 ## Installation
 
 ```
 pip install -r requirements.txt
 ```
 
-If you want run the tests. you should also install these dependencies :
+If you want run the tests, you need an elasticsearch running in local. 
+You should also install these dependencies :
 ```
 pip install -r dev-requirements.txt
 ```
