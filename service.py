@@ -43,5 +43,6 @@ def transform(event):
             'bio': payload.get('bio'),
             'story': payload.get('story'),
             'interests': payload.get('interests'),
-            'virtualStudies': payload.get('virtualStudies')
+            'virtualStudies': payload.get('virtualStudies'),
+            'searchableInterests': [{'name': p} for p in (payload.get('interests') or [])]
         }

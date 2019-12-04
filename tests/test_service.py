@@ -44,3 +44,4 @@ def test_handler():
     assert b['_source'].get('interests') == ["Volley Ball", "Natation"]
     assert b['_source'].get('virtualStudies') == [{"_id": "1", "name": "Virtual Study 1"},
                                                   {"_id": "12", "name": "Virtual Study 2"}]
+    assert b['_source'].get('searchableInterests') == [{"name": "Volley Ball"}, {"name": "Natation"}]
