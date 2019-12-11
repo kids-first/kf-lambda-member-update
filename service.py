@@ -29,6 +29,7 @@ def transform(event):
             'firstName': payload.get('firstName'),
             'lastName': payload.get('lastName'),
             'email': payload.get('email'),
+            'hashedEmail': payload.get('hashedEmail'),
             'institutionalEmail': payload.get('institutionalEmail'),
             'acceptedTerms': payload.get('acceptedTerms'),
             'isPublic': payload.get('isPublic', False),
