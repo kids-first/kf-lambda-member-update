@@ -15,7 +15,9 @@ def test_handler():
         "Records": [
             {
                 "messageId": "059f36b4-87a3-44ab-83d2-661975830a7d",
-                "body": json.dumps({"_id": "abc", "firstName": "John", "lastName": "Doe"})
+                "body": json.dumps({"_id": "abc", "firstName": "John", "lastName": "Doe",
+                                    "hashedEmail": "0bc83cb571cd1c50ba6f3e8a78ef1346",
+                                    "email": "test@yahoo.ca"})
             },
             {
                 "messageId": "2e1424d4-f796-459a-8184-9c92662be6da",
@@ -34,6 +36,8 @@ def test_handler():
     assert a['_source'].get('firstName') == 'John'
     assert a['_source'].get('lastName') == 'Doe'
     assert not a['_source'].get('isPublic')
+    assert a['_source'].get('hashedEmail') == '0bc83cb571cd1c50ba6f3e8a78ef1346'
+    assert a['_source'].get('email') == 'test@yahoo.ca'
 
     b = es.get('member', 'member', 'def')
     assert b.get('found')

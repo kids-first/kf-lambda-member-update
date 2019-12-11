@@ -3,7 +3,11 @@ MEMBER_INDEX = {
         "member": {
             "properties": {
                 "email": {
-                    "type": "keyword"
+                    "type": "keyword",
+                },
+                "hashedEmail": {
+                    "type": "keyword",
+                    "index": False
                 },
                 "institutionalEmail": {
                     "type": "keyword"
