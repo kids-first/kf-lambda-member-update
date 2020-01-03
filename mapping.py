@@ -1,4 +1,26 @@
 MEMBER_INDEX = {
+    "settings": {
+        "analysis": {
+            "analyzer": {
+                "autocomplete": {
+                    "type": "custom",
+                    "tokenizer": "standard",
+                    "filter": [
+                        "lowercase",
+                        "edge_ngram"
+                    ]
+                }
+            },
+            "filter": {
+                "edge_ngram": {
+                    "type": "edgeNGram",
+                    "min_gram": 1,
+                    "max_gram": 20,
+                    "side": "front"
+                }
+            }
+        }
+    },
     "mappings": {
         "member": {
             "properties": {
@@ -27,6 +49,7 @@ MEMBER_INDEX = {
                 },
                 "firstName": {
                     "type": "text",
+                    "analyzer": "autocomplete",
                     "fields": {
                         "raw": {
                             "type": "keyword"
@@ -35,6 +58,7 @@ MEMBER_INDEX = {
                 },
                 "lastName": {
                     "type": "text",
+                    "analyzer": "autocomplete",
                     "fields": {
                         "raw": {
                             "type": "keyword"
@@ -43,6 +67,7 @@ MEMBER_INDEX = {
                 },
                 "jobTitle": {
                     "type": "text",
+                    "analyzer": "autocomplete",
                     "fields": {
                         "raw": {
                             "type": "keyword"
@@ -51,6 +76,7 @@ MEMBER_INDEX = {
                 },
                 "institution": {
                     "type": "text",
+                    "analyzer": "autocomplete",
                     "fields": {
                         "raw": {
                             "type": "keyword"
@@ -59,6 +85,7 @@ MEMBER_INDEX = {
                 },
                 "city": {
                     "type": "text",
+                    "analyzer": "autocomplete",
                     "fields": {
                         "raw": {
                             "type": "keyword"
@@ -67,6 +94,7 @@ MEMBER_INDEX = {
                 },
                 "state": {
                     "type": "text",
+                    "analyzer": "autocomplete",
                     "fields": {
                         "raw": {
                             "type": "keyword"
@@ -75,6 +103,7 @@ MEMBER_INDEX = {
                 },
                 "country": {
                     "type": "text",
+                    "analyzer": "autocomplete",
                     "fields": {
                         "raw": {
                             "type": "keyword"
@@ -85,13 +114,16 @@ MEMBER_INDEX = {
                     "type": "keyword"
                 },
                 "bio": {
-                    "type": "text"
+                    "type": "text",
+                    "analyzer": "autocomplete"
                 },
                 "story": {
-                    "type": "text"
+                    "type": "text",
+                    "analyzer": "autocomplete"
                 },
                 "interests": {
                     "type": "text",
+                    "analyzer": "autocomplete",
                     "fields": {
                         "raw": {
                             "type": "keyword"
@@ -106,6 +138,7 @@ MEMBER_INDEX = {
                         },
                         "name": {
                             "type": "text",
+                            "analyzer": "autocomplete",
                             "fields": {
                                 "raw": {
                                     "type": "keyword"
@@ -120,6 +153,7 @@ MEMBER_INDEX = {
                     "properties": {
                         "name": {
                             "type": "text",
+                            "analyzer": "autocomplete",
                             "fields": {
                                 "raw": {
                                     "type": "keyword"
