@@ -7,7 +7,8 @@ MEMBER_INDEX = {
                     "tokenizer": "standard",
                     "filter": [
                         "lowercase",
-                        "edge_ngram"
+                        "edge_ngram",
+                        "member_ascii_folding"
                     ]
                 }
             },
@@ -17,6 +18,10 @@ MEMBER_INDEX = {
                     "min_gram": 1,
                     "max_gram": 20,
                     "side": "front"
+                },
+                "member_ascii_folding": {
+                    "type": "asciifolding",
+                    "preserve_original": True
                 }
             }
         }
@@ -25,7 +30,7 @@ MEMBER_INDEX = {
         "member": {
             "properties": {
                 "email": {
-                    "type": "keyword",
+                    "type": "keyword"
                 },
                 "hashedEmail": {
                     "type": "keyword",
