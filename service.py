@@ -33,6 +33,7 @@ def transform(event):
             'institutionalEmail': payload.get('institutionalEmail'),
             'acceptedTerms': payload.get('acceptedTerms'),
             'isPublic': payload.get('isPublic', False),
+            'isActive': payload.get('isActive', True),
             'roles': payload.get('roles'),
             'title': payload.get('title'),
             'jobTitle': payload.get('jobTitle'),

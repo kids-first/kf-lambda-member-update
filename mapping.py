@@ -45,6 +45,9 @@ MEMBER_INDEX = {
                 "isPublic": {
                     "type": "boolean"
                 },
+                "isActive": {
+                    "type": "boolean"
+                },
                 "roles": {
                     "type": "keyword"
                 },
