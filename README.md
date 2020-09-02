@@ -7,7 +7,7 @@ This lambda receive events from the SQS queue that contains users from kf-person
 It takes into account two environment variables :
 - es_host : Elastic Search cluster Host (by default, localhost)
 - es_port : Elastic Search cluster Port (by default, 9200)
-- es_ssl : Elastic Search client to use SSL for connection set value to `https` (by default, `no_ssl`)
+- es_scheme : Elastic Search client to use SSL for connection set value to `https` (by default, `http`)
 
 The lambda will try to create the index if it does not exists.
 
