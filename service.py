@@ -13,7 +13,8 @@ def handler(event, context):
     """
     es_host = os.environ.get('es_host', 'localhost')
     es_port = os.environ.get('es_port', '9200')
-    es = Elasticsearch([{'host': es_host, 'port': es_port}])
+    es_ssl = os.environ.get('es_ssl', 'no_ssl')
+    es = Elasticsearch([{'host': es_host, 'port': es_port}], scheme=es_ssl)
     es.indices.create('member', body=MEMBER_INDEX, ignore=400)
     records = transform(event)
     bulk(es, records)
