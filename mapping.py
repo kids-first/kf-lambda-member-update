@@ -7,14 +7,14 @@ MEMBER_INDEX = {
                     "tokenizer": "standard",
                     "filter": [
                         "lowercase",
-                        "edge_ngram",
+                        "custom_edge_ngram",
                         "member_ascii_folding"
                     ]
                 }
             },
             "filter": {
-                "edge_ngram": {
-                    "type": "edgeNGram",
+                "custom_edge_ngram": {
+                    "type": "edge_ngram",
                     "min_gram": 1,
                     "max_gram": 20,
                     "side": "front"

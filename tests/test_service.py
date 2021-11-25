@@ -1,9 +1,8 @@
 import json
 
-from elasticsearch6 import Elasticsearch
+from elasticsearch7 import Elasticsearch
 
 import service
-
 
 def test_handler():
     """
@@ -30,7 +29,7 @@ def test_handler():
         ]
     }, {})
 
-    a = es.get('member', 'member', 'abc')
+    a = es.get('member', 'abc')
     assert a.get('found')
     assert a.get('_id') == 'abc'
     assert a['_source'].get('firstName') == 'John'
@@ -39,7 +38,7 @@ def test_handler():
     assert a['_source'].get('hashedEmail') == '0bc83cb571cd1c50ba6f3e8a78ef1346'
     assert a['_source'].get('email') == 'test@yahoo.ca'
 
-    b = es.get('member', 'member', 'def')
+    b = es.get('member', 'def')
     assert b.get('found')
     assert b.get('_id') == 'def'
     assert b['_source'].get('firstName') == 'Jane'

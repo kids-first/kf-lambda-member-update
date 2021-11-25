@@ -1,8 +1,8 @@
 import json
 import os
 
-from elasticsearch6 import Elasticsearch
-from elasticsearch6.helpers import bulk
+from elasticsearch7 import Elasticsearch
+from elasticsearch7.helpers import bulk
 
 from mapping import MEMBER_INDEX
 
@@ -25,7 +25,6 @@ def transform(event):
         payload = json.loads(record["body"])
         yield {
             '_index': 'member',
-            '_type': 'member',
             '_id': payload['_id'],
             'firstName': payload.get('firstName'),
             'lastName': payload.get('lastName'),
