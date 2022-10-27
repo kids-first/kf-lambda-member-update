@@ -4,7 +4,7 @@ GREEN='\e[32m'
 RED='\e[0;31m'
 CLEAR='\e[0m'
 
-ColorGreen(){
+color_green(){
 	echo -ne "$GREEN$1$CLEAR"
 }
 
@@ -21,12 +21,12 @@ remove_image() {
 
 menu(){
 echo -ne "
-$(ColorGreen '1)') Run unit tests
-$(ColorGreen '2)') Run integration tests (make sure your local elasticsearch cluster is up)
-$(ColorGreen '3)') Run terminal (with es-net network; sharing project files)
-$(ColorGreen '4)') Run terminal (no network; sharing project files)
-$(ColorGreen '5)') Remove image
-$(ColorGreen '0)') Exit
+$(color_green '1)') Run unit tests
+$(color_green '2)') Run integration tests (make sure your local elasticsearch cluster is up)
+$(color_green '3)') Run terminal (with es-net network; sharing project files)
+$(color_green '4)') Run terminal (no network; sharing project files)
+$(color_green '5)') Remove image
+$(color_green '0)') Exit
 Choose an option: "
         read -r a
         case $a in
