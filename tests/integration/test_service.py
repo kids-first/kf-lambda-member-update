@@ -2,7 +2,7 @@ import tests.constants as constants
 import mappings
 from service import process_event, build_es_client
 import pytest
-import os
+from os import environ
 
 INDICES = [mappings.INDEX_MEMBER, mappings.INDEX_MEMBERS]
 
@@ -11,9 +11,9 @@ INDICES = [mappings.INDEX_MEMBER, mappings.INDEX_MEMBERS]
 def es():
     # SETUP
     es = build_es_client(
-        os.environ.get("es_host", "elasticsearch"),
-        os.environ.get("es_port", "9200"),
-        os.environ.get("es_scheme", "http"),
+        environ.get("es_host", "elasticsearch"),
+        environ.get("es_port", "9200"),
+        environ.get("es_scheme", "http"),
     )
 
     if not es.ping():

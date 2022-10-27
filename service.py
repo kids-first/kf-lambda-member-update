@@ -8,8 +8,8 @@ The former (member) is used for legacy purposes. It has the concept of virtual s
 The latter (members) is meant to be used in the service kf-api-arranger,
 Members index and has no concept of virtual studies.
 """
-import json
-import os
+from json import loads
+from os import environ
 
 from elasticsearch7 import Elasticsearch
 from elasticsearch7.helpers import bulk
@@ -33,7 +33,7 @@ def transform_event_to_docs(event, index, omit):
     Returns:
       a generator with docs"""
     for record in event["Records"]:
-        payload = json.loads(record["body"])
+        payload = loads(record["body"])
         yield dict(
             filter(
                 lambda x: x[0] not in omit if len(omit) > 0 else True,
@@ -91,8 +91,8 @@ def handler(event, _):
       Nothing is returned - it is a write operation.
     """
     es_client = build_es_client(
-        os.environ.get("es_host", "localhost"),
-        os.environ.get("es_port", "9200"),
-        os.environ.get("es_scheme", "http"),
+        environ.get("es_host", "localhost"),
+        environ.get("es_port", "9200"),
+        environ.get("es_scheme", "http"),
     )
     process_event(event, es_client)
