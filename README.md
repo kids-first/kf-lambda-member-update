@@ -1,24 +1,40 @@
-# kf-lambda-member-update
+# :busts_in_silhouette: kf-lambda-member-update
 
-[![CircleCI](https://circleci.com/gh/kids-first/kf-lambda-member-update.svg?style=svg)](https://circleci.com/gh/kids-first/kf-lambda-member-update)
 
-This lambda receive events from the SQS queue that contains users from kf-persona.
+This lambda receives events from the SQS queue that contains users from kf-persona. Upon reception, the lambda writes
+these members to elastic search.
 
-It takes into account two environment variables :
-- es_host : Elastic Search cluster Host (by default, localhost)
-- es_port : Elastic Search cluster Port (by default, 9200)
-- es_scheme : Elastic Search client to use SSL for connection set value to `https` (by default, `http`)
-
-The lambda will try to create the index if it does not exists.
-
+> **Note**: The lambda will try to create the index(es) if it does not exist.
 ## Installation
 
+
+## :nut_and_bolt: Installation && Development
+The `run.sh` script lets you different options to run various part of the program:
 ```
-pip install -r requirements.txt
+chmod +x ./run.sh
+./run.sh
+```
+Please note that if you want to run the integration test(s) you need an elastic search
+cluster running locally. In that case, before running any test do:
+```
+docker-compose up
+```
+Afterwards, you can run the integration test.
+> **Note**: To shut down the cluster: docker-compose down
+
+If you want to format a file with _black_ tool, once in the docker's terminal
+```
+black path_to_your_file.py
+```
+Similar for pylint
+```
+pylint path_to_your_file.py
 ```
 
-If you want run the tests, you need an elasticsearch running in local. 
-You should also install these dependencies :
+These environment variables can be useful:
 ```
-pip install -r dev-requirements.txt
+- es_host : Elastic Search cluster Host (by default, localhost)
+- es_port : Elastic Search cluster Port (by default, 9200)
+- es_scheme : Elastic Search client protocole scheme (by default, http)
 ```
+
