@@ -34,7 +34,7 @@ def es():
 
 def test_process_event(es):
     """
-    Test the service handler
+    Tests the core effect of the lambda.
     """
     process_event(constants.EVENT_MOCK_1, es)
 

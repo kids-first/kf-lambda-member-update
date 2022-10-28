@@ -1,10 +1,10 @@
-import json
+from json import dumps
 
 EVENT_MOCK_1 = {
     "Records": [
         {
             "messageId": "059f36b4-87a3-44ab-83d2-661975830a7d",
-            "body": json.dumps(
+            "body": dumps(
                 {
                     "_id": "abc",
                     "firstName": "John",
@@ -16,7 +16,7 @@ EVENT_MOCK_1 = {
         },
         {
             "messageId": "2e1424d4-f796-459a-8184-9c92662be6da",
-            "body": json.dumps(
+            "body": dumps(
                 {
                     "_id": "def",
                     "firstName": "Jane",
