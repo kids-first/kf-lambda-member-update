@@ -1,0 +1,23 @@
+name: Check Pull Request Quality
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  tests:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Install Python
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+      - name: Install Dependencies
+      - run: | 
+          pip install -r dev-requirements.txt -r requirements.txt
+        shell: bash
+      - name: Run Unit Tests
+      - run: pytest tests/unit
+        shell: bash
