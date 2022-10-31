@@ -20,6 +20,24 @@ import mappings
 def write_members_to_elasticsearch(es_client, index, docs):
     if not es_client.indices.exists(index=index):
         es_client.indices.create(index, body=mappings.INDEX_TO_MAPPING[index])
+    if index == mappings.INDEX_MEMBERS:
+        #Create or Update
+        es_client.indices.put_alias(
+            mappings.INDEX_MEMBERS,
+            mappings.PUBLIC_MEMBERS_ALIAS,
+            body={
+                "actions": [
+                    {
+                        "add": {
+                            "index": mappings.INDEX_MEMBERS,
+                            "filter": {
+                                "bool": {"filter": [{"term": {"isPublic": True}}]}
+                            },
+                        }
+                    }
+                ]
+            },
+        )
     bulk(es_client, docs)
 
 
