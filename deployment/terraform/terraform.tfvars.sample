@@ -1,0 +1,8 @@
+# Add variables in this format
+
+environment="<dev/qa/prd>"
+organization="<Organization name>"
+security_group_name="<Dataservice api security group name>"
+es_host="<Elasticsearch Domain hostname>"
+bucket="<Remote state bucket>"
+payload_bucket="<Name of bucket to push files to>"
