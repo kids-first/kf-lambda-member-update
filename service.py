@@ -81,6 +81,8 @@ def transform_event_to_docs(event, index, omit):
                     "searchableInterests": [
                         {"name": p} for p in (payload.get("interests") or [])
                     ],
+                    "linkedin": payload.get("linkedin", ""),
+                    "website": payload.get("website", ""),
                 }.items(),
             )
         )
