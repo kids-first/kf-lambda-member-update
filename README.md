@@ -38,3 +38,19 @@ These environment variables can be useful:
 - es_scheme : Elastic Search client protocole scheme (by default, http)
 ```
 
+###  :running: Docker + Lambda
+If you want to test the lambda with high fidelity (more [here](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html)) you can do the following steps (adjust, if needed):
+```
+# Build the image
+docker build -t <name-of-your-image> .
+
+# Run the lambda the container
+docker run --rm -it -p 9000:8080 <name-of-your-image>
+
+# Invoke the lambda
+curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{ "Record": <...> }'
+
+# Remove image
+docker rmi <name-of-your-image>
+```
+> **:warning:**: Make sure that all the source file(s) needed to run the lambda is copied into the image. 
