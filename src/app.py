@@ -14,7 +14,7 @@ from os import environ
 from elasticsearch7 import Elasticsearch
 from elasticsearch7.helpers import bulk
 
-import mappings
+from src import mappings
 
 
 def write_members_to_elasticsearch(es_client, index, docs):

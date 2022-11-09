@@ -3,8 +3,8 @@ To run this script you need an elasticsearch cluster.
 """
 from os import environ
 
-import mappings
-from service import build_es_client
+from src import mappings
+from src import app
 
 PIPELINE_ID = "member"
 
@@ -18,7 +18,7 @@ def main():
     This script copies (reIndex) documents from member index to members index.
     Assumes that the destination index DOES NOT EXIST.
     """
-    es_client = build_es_client(
+    es_client = app.build_es_client(
         environ.get("es_host", "elasticsearch"),
         environ.get("es_port", "9200"),
         environ.get("es_scheme", "http"),

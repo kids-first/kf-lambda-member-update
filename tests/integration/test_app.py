@@ -1,6 +1,6 @@
 import tests.constants as constants
-import mappings
-from service import process_event, build_es_client
+from scr import mappings
+from src import app
 import pytest
 from os import environ
 
@@ -10,7 +10,7 @@ INDICES = [mappings.INDEX_MEMBER, mappings.INDEX_MEMBERS]
 @pytest.fixture
 def es():
     # SETUP
-    es = build_es_client(
+    es = app.build_es_client(
         environ.get("es_host", "elasticsearch"),
         environ.get("es_port", "9200"),
         environ.get("es_scheme", "http"),
@@ -36,7 +36,7 @@ def test_process_event(es):
     """
     Tests the core effect of the lambda.
     """
-    process_event(constants.EVENT_MOCK_1, es)
+    app.process_event(constants.EVENT_MOCK_1, es)
 
     for index in INDICES:
         a = es.get(index, "abc")
