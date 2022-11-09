@@ -1,6 +1,5 @@
 import tests.constants as constants
-from scr import mappings
-from src import app
+from src import app, mappings
 import pytest
 from os import environ
 

@@ -2,9 +2,7 @@
 To run this script you need an elasticsearch cluster.
 """
 from os import environ
-
-from src import mappings
-from src import app
+from src import app, mappings
 
 PIPELINE_ID = "member"
 
