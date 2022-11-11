@@ -3,7 +3,7 @@ resource "aws_sns_topic" "app_sns_notifications" {
   display_name      = "${var.application}-${var.region}-${var.environment}-notifications"
   kms_master_key_id = "alias/${var.application}-${var.environment}-kms-key"
   tags = {
-    git_commit           = "85cdabefb205a2f15f8862f28766e51ebd8807ea"
+    git_commit           = "3a9544c19922bcd4ebcdb1f428df0532140a87fa"
     git_file             = "deployment/terraform/sns.tf"
     git_last_modified_at = "2022-11-01 18:05:43"
     git_last_modified_by = "blackdenc@chop.edu"
@@ -55,7 +55,7 @@ resource "aws_kms_key" "sqs_sns_key" {
   policy              = data.aws_iam_policy_document.kms_policy.json
   enable_key_rotation = true
   tags = {
-    git_commit           = "85cdabefb205a2f15f8862f28766e51ebd8807ea"
+    git_commit           = "3a9544c19922bcd4ebcdb1f428df0532140a87fa"
     git_file             = "deployment/terraform/sns.tf"
     git_last_modified_at = "2022-11-01 18:05:43"
     git_last_modified_by = "blackdenc@chop.edu"

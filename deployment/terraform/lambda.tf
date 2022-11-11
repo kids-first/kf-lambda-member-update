@@ -2,7 +2,7 @@ resource "aws_cloudwatch_log_group" "app" {
   name              = "apps-${var.environment}/${var.application}"
   retention_in_days = 90
   tags = {
-    git_commit           = "85cdabefb205a2f15f8862f28766e51ebd8807ea"
+    git_commit           = "3a9544c19922bcd4ebcdb1f428df0532140a87fa"
     git_file             = "deployment/terraform/lambda.tf"
     git_last_modified_at = "2022-11-01 18:05:43"
     git_last_modified_by = "blackdenc@chop.edu"
@@ -34,9 +34,16 @@ resource "aws_lambda_function" "kf_lambda_function" {
   memory_size = var.lambda_memory
 
   tags = {
-    env         = var.environment
-    application = var.application
-    yor_trace   = "3c5d7f53-f09f-4222-8e9e-10cf77e969e8"
+    env                  = var.environment
+    application          = var.application
+    yor_trace            = "3c5d7f53-f09f-4222-8e9e-10cf77e969e8"
+    git_commit           = "3a9544c19922bcd4ebcdb1f428df0532140a87fa"
+    git_file             = "deployment/terraform/lambda.tf"
+    git_last_modified_at = "2022-11-01 18:05:43"
+    git_last_modified_by = "blackdenc@chop.edu"
+    git_modifiers        = "blackdenc"
+    git_org              = "kids-first"
+    git_repo             = "kf-lambda-member-update"
   }
 
   environment {

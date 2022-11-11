@@ -12,7 +12,7 @@ resource "aws_sqs_queue" "kf_lambda_sqs" {
     Name                 = "lambda-${var.application}-${var.environment}-sqs"
     Environment          = var.environment
     Application          = var.application
-    git_commit           = "85cdabefb205a2f15f8862f28766e51ebd8807ea"
+    git_commit           = "3a9544c19922bcd4ebcdb1f428df0532140a87fa"
     git_file             = "deployment/terraform/sqs.tf"
     git_last_modified_at = "2022-11-01 18:05:43"
     git_last_modified_by = "blackdenc@chop.edu"
