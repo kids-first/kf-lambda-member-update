@@ -16,7 +16,7 @@ jobs:
           cache: 'pip'
       - name: Install Dependencies
         run: | 
-          pip install -r dev-requirements.txt -r requirements.txt
+          pip install -r src/requirements.txt -r requirements.txt
         shell: bash
       - name: Run Unit Tests
         run: pytest tests/unit
