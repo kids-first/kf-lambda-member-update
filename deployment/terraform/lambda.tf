@@ -55,7 +55,7 @@ resource "aws_lambda_function" "kf_lambda_function" {
   }
 
   vpc_config {
-    subnet_ids         = [data.aws_subnet.subnet1.id, data.aws_subnet.subnet2.id, data.aws_subnet.subnet3.id, data.aws_subnet.subnet4.id]
+    subnet_ids         = module.network.private_subnets
     security_group_ids = [aws_security_group.lambda_sg.id]
   }
 }

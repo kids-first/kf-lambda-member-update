@@ -55,3 +55,8 @@ variable "ecr_name" {
   description = "(optional) describe your variable"
   default     = "kf-strides-member-updates-lambda"
 }
+
+variable "azs" {
+  type    = list(any)
+  default = ["a", "b", "c", "e"]
+}
