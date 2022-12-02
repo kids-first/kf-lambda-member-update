@@ -2,7 +2,7 @@ resource "aws_iam_instance_profile" "aws_lambda_profile" {
   name = "aws-lambda-${var.application}-${var.environment}-profile"
   role = aws_iam_role.aws_lambda_role.name
   tags = {
-    git_commit           = "7173679218c859ca8e841e802790fec06cc76826"
+    git_commit           = "91c80656a306a7a32bc611d97286f3719b2fbcb0"
     git_file             = "deployment/terraform/iam.tf"
     git_last_modified_at = "2022-11-01 18:05:43"
     git_last_modified_by = "blackdenc@chop.edu"
@@ -18,7 +18,7 @@ resource "aws_iam_role" "aws_lambda_role" {
 
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json
   tags = {
-    git_commit           = "7173679218c859ca8e841e802790fec06cc76826"
+    git_commit           = "91c80656a306a7a32bc611d97286f3719b2fbcb0"
     git_file             = "deployment/terraform/iam.tf"
     git_last_modified_at = "2022-11-01 18:05:43"
     git_last_modified_by = "blackdenc@chop.edu"
@@ -46,7 +46,7 @@ resource "aws_iam_policy" "aws_lambda_policy" {
   description = "Policy for lambda"
   policy      = data.aws_iam_policy_document.lambda_policy_document.json
   tags = {
-    git_commit           = "7173679218c859ca8e841e802790fec06cc76826"
+    git_commit           = "91c80656a306a7a32bc611d97286f3719b2fbcb0"
     git_file             = "deployment/terraform/iam.tf"
     git_last_modified_at = "2022-11-01 18:05:43"
     git_last_modified_by = "blackdenc@chop.edu"

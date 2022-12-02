@@ -45,7 +45,7 @@ resource "aws_lambda_function" "kf_lambda_function" {
     env                  = var.environment
     application          = var.application
     yor_trace            = "3c5d7f53-f09f-4222-8e9e-10cf77e969e8"
-    git_commit           = "7173679218c859ca8e841e802790fec06cc76826"
+    git_commit           = "91c80656a306a7a32bc611d97286f3719b2fbcb0"
     git_file             = "deployment/terraform/lambda.tf"
     git_last_modified_at = "2022-11-01 18:05:43"
     git_last_modified_by = "blackdenc@chop.edu"

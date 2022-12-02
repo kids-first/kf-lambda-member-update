@@ -3,7 +3,7 @@ resource "aws_kms_key" "sqs_sns_key" {
   policy              = data.aws_iam_policy_document.kms_policy.json
   enable_key_rotation = true
   tags = {
-    git_commit           = "7173679218c859ca8e841e802790fec06cc76826"
+    git_commit           = "91c80656a306a7a32bc611d97286f3719b2fbcb0"
     git_file             = "deployment/terraform/kms.tf"
     git_last_modified_at = "2022-11-01 18:05:43"
     git_last_modified_by = "blackdenc@chop.edu"
