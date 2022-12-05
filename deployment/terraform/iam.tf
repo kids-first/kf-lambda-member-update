@@ -129,7 +129,7 @@ data "aws_iam_policy_document" "lambda_policy_document" {
     ]
 
     resources = [
-      "arn:aws:logs:*:*:*",
+      aws_cloudwatch_log_group.app.arn,
     ]
   }
 }
