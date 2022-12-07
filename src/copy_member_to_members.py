@@ -1,5 +1,7 @@
 """
 To run this script you need an elasticsearch cluster.
+This script is not meant to used by the lambda.
+It is useful for maintenance.
 """
 from os import environ
 import app

@@ -8,15 +8,25 @@ The former (member) is used for legacy purposes. It has the concept of virtual s
 The latter (members) is meant to be used in the service kf-api-arranger,
 Members index and has no concept of virtual studies.
 """
+from os import environ
 from elasticsearch7 import Elasticsearch
 from elasticsearch7.helpers import bulk
-from os import environ
+
 
 import mappings
-from transform import transform_event_to_docs
+import transform
 
 
 def write_members_to_elasticsearch(es_client, index, docs):
+    """
+    Writes members to an index.
+    An alias that only show public members is created too if needed.
+    Arguments:
+      docs: all documents (members) to write to the index.
+      index: name of the elasticsearch index to process
+      es_client: elastic search client
+    Returns:
+      Nothing is returned - it is a write operation."""
     if not es_client.indices.exists(index=index):
         es_client.indices.create(index, body=mappings.INDEX_TO_MAPPING[index])
     if index == mappings.INDEX_MEMBERS:
@@ -47,7 +57,7 @@ def build_es_client(host, port, scheme):
 def process_event(event, es_client):
     for index in [mappings.INDEX_MEMBER, mappings.INDEX_MEMBERS]:
         omit = ["virtualStudies"] if index == mappings.INDEX_MEMBERS else []
-        docs = transform_event_to_docs(event, index, omit)
+        docs = transform.transform_event_to_docs(event, index, omit)
         write_members_to_elasticsearch(es_client, index, docs)
 
 
