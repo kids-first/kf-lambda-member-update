@@ -9,9 +9,9 @@ these members to elastic search.
 
 
 ## :nut_and_bolt: Development
-To run the unit test(s) do `run-unit-tests.sh`
+To run the unit test(s), from the root of the project directory do `scripts/run-unit-tests.sh`
 
-To obtain a terminal with all the dependencies do `run-sh-with-pip-requirements.sh`.
+To obtain a terminal with all the dependencies do `scripts/run-sh-with-pip-requirements.sh`.
 Then, you can do
 ```
 black path_to_your_file.py
@@ -40,7 +40,7 @@ docker build -t <name-of-your-image> .
  docker run --rm -it --network="es-net" -p 9000:8080 -e es_host="elasticsearch" <name-of-your-image>
 
 # Invoke the lambda. For instance,
-curl --location --request POST 'http://127.0.0.0:9000/2015-03-31/functions/function/invocations' \
+curl --location --request POST 'http://localhost:9000/2015-03-31/functions/function/invocations' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "Records": [
@@ -54,6 +54,7 @@ curl --location --request POST 'http://127.0.0.0:9000/2015-03-31/functions/funct
         }
     ]
 }'
+# Expected Output is: null
 
 # Remove image
 docker rmi <name-of-your-image>
