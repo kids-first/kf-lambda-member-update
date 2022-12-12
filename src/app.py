@@ -8,20 +8,29 @@ The former (member) is used for legacy purposes. It has the concept of virtual s
 The latter (members) is meant to be used in the service kf-api-arranger,
 Members index and has no concept of virtual studies.
 """
-from json import loads
 from os import environ
-
 from elasticsearch7 import Elasticsearch
 from elasticsearch7.helpers import bulk
 
+
 import mappings
+import transform
 
 
 def write_members_to_elasticsearch(es_client, index, docs):
+    """
+    Writes members to an index.
+    An alias that only show public members is created too if needed.
+    Arguments:
+      docs: all documents (members) to write to the index.
+      index: name of the elasticsearch index to process
+      es_client: elastic search client
+    Returns:
+      Nothing is returned - it is a write operation."""
     if not es_client.indices.exists(index=index):
         es_client.indices.create(index, body=mappings.INDEX_TO_MAPPING[index])
     if index == mappings.INDEX_MEMBERS:
-        #Create or Update
+        # Create or Update
         es_client.indices.put_alias(
             mappings.INDEX_MEMBERS,
             mappings.PUBLIC_MEMBERS_ALIAS,
@@ -41,53 +50,6 @@ def write_members_to_elasticsearch(es_client, index, docs):
     bulk(es_client, docs)
 
 
-def transform_event_to_docs(event, index, omit):
-    """
-    Takes an event and transform it to a suitable doc for the elastic search client.
-    Arguments:
-      event: service event – Amazon SNS notification
-      index: the elastic search index name where that doc will be written to.
-      omit: list of fields that we want to omit
-    Returns:
-      a generator with docs"""
-    for record in event["Records"]:
-        payload = loads(record["body"])
-        yield dict(
-            filter(
-                lambda x: x[0] not in omit if len(omit) > 0 else True,
-                {
-                    "_index": index,
-                    "_id": payload["_id"],
-                    "firstName": payload.get("firstName"),
-                    "lastName": payload.get("lastName"),
-                    "email": payload.get("email"),
-                    "hashedEmail": payload.get("hashedEmail"),
-                    "institutionalEmail": payload.get("institutionalEmail"),
-                    "acceptedTerms": payload.get("acceptedTerms"),
-                    "isPublic": payload.get("isPublic", False),
-                    "isActive": payload.get("isActive", True),
-                    "roles": payload.get("roles"),
-                    "title": payload.get("title"),
-                    "jobTitle": payload.get("jobTitle"),
-                    "institution": payload.get("institution"),
-                    "city": payload.get("city"),
-                    "state": payload.get("state"),
-                    "country": payload.get("country"),
-                    "eraCommonsID": payload.get("eraCommonsID"),
-                    "bio": payload.get("bio"),
-                    "story": payload.get("story"),
-                    "interests": payload.get("interests"),
-                    "virtualStudies": payload.get("virtualStudies"),
-                    "searchableInterests": [
-                        {"name": p} for p in (payload.get("interests") or [])
-                    ],
-                    "linkedin": payload.get("linkedin", ""),
-                    "website": payload.get("website", ""),
-                }.items(),
-            )
-        )
-
-
 def build_es_client(host, port, scheme):
     return Elasticsearch([{"host": host, "port": port}], scheme=scheme)
 
@@ -95,7 +57,7 @@ def build_es_client(host, port, scheme):
 def process_event(event, es_client):
     for index in [mappings.INDEX_MEMBER, mappings.INDEX_MEMBERS]:
         omit = ["virtualStudies"] if index == mappings.INDEX_MEMBERS else []
-        docs = transform_event_to_docs(event, index, omit)
+        docs = transform.transform_event_to_docs(event, index, omit)
         write_members_to_elasticsearch(es_client, index, docs)
 
 

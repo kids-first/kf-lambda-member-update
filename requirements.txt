@@ -1,2 +1,3 @@
-boto3==1.9.219
-elasticsearch7==7.13.0
+pytest==5.1.1
+black==22.10.0
+pylint==2.15.5
