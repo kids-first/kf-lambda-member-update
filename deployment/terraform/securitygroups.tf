@@ -17,7 +17,7 @@ resource "aws_security_group" "lambda_sg" {
     cidr_blocks = var.aws_cidr
   }
   tags = {
-    git_commit           = "afa192c45afead3b157b608d3afa1ff4b44f67a0"
+    git_commit           = "a49bac342be669536e9c96eedba4139c1608a0e9"
     git_file             = "deployment/terraform/securitygroups.tf"
     git_last_modified_at = "2022-11-01 18:05:43"
     git_last_modified_by = "blackdenc@chop.edu"
