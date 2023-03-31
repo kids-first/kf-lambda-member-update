@@ -69,9 +69,7 @@ def main():
                 {
                     "add": {
                         "index": mappings.INDEX_MEMBERS,
-                        "filter": {
-                            "bool": {"filter": [{"term": {"isPublic": True}}]}
-                        },
+                        "filter": {"bool": {"filter": [{"term": {"isPublic": True}}]}},
                     }
                 }
             ]
