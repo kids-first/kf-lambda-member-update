@@ -167,6 +167,16 @@ _MEMBERS_MAPPING = {
                     }
                 },
             },
+            "website": {
+                "type": "text",
+                "analyzer": "autocomplete",
+                "fields": {"raw": {"type": "keyword"}},
+            },
+            "linkedin": {
+                "type": "text",
+                "analyzer": "autocomplete",
+                "fields": {"raw": {"type": "keyword"}},
+            },
         }
     },
 }
