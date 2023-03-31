@@ -61,6 +61,21 @@ def main():
 
     es_client.ingest.delete_pipeline(PIPELINE_ID)
 
+    es_client.indices.put_alias(
+        mappings.INDEX_MEMBERS,
+        mappings.PUBLIC_MEMBERS_ALIAS,
+        body={
+            "actions": [
+                {
+                    "add": {
+                        "index": mappings.INDEX_MEMBERS,
+                        "filter": {"bool": {"filter": [{"term": {"isPublic": True}}]}},
+                    }
+                }
+            ]
+        },
+    )
+
 
 if __name__ == "__main__":
     main()
