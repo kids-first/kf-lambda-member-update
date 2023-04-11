@@ -12,14 +12,17 @@ def transform_event_to_docs(event, index, omit):
       a generator with docs"""
     for record in event["Records"]:
         payload = loads(record["body"])
+        first_name = payload.get("firstName")
+        last_name = payload.get("lastName")
+        institution = payload.get("institution")
         yield dict(
             filter(
                 lambda x: x[0] not in omit if len(omit) > 0 else True,
                 {
                     "_index": index,
                     "_id": payload["_id"],
-                    "firstName": payload.get("firstName"),
-                    "lastName": payload.get("lastName"),
+                    "firstName": first_name,
+                    "lastName": last_name,
                     "email": payload.get("email"),
                     "hashedEmail": payload.get("hashedEmail"),
                     "institutionalEmail": payload.get("institutionalEmail"),
@@ -29,7 +32,7 @@ def transform_event_to_docs(event, index, omit):
                     "roles": payload.get("roles"),
                     "title": payload.get("title"),
                     "jobTitle": payload.get("jobTitle"),
-                    "institution": payload.get("institution"),
+                    "institution": institution,
                     "city": payload.get("city"),
                     "state": payload.get("state"),
                     "country": payload.get("country"),
@@ -43,6 +46,9 @@ def transform_event_to_docs(event, index, omit):
                     ],
                     "linkedin": payload.get("linkedin", ""),
                     "website": payload.get("website", ""),
+                    "searchText": list(
+                        set(filter(None, [first_name, last_name, institution]))
+                    ),
                 }.items(),
             )
         )

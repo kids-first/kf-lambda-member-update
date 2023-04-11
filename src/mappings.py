@@ -19,6 +19,13 @@ COMMON_SETTINGS = {
             },
             "member_ascii_folding": {"type": "asciifolding", "preserve_original": True},
         },
+        "normalizer": {
+            "custom_normalizer": {
+                "type": "custom",
+                "char_filter": [],
+                "filter": "lowercase"
+            }
+        }
     }
 }
 
@@ -176,6 +183,10 @@ _MEMBERS_MAPPING = {
                 "type": "text",
                 "analyzer": "autocomplete",
                 "fields": {"raw": {"type": "keyword"}},
+            },
+            "searchText": {
+                "type": "keyword",
+                "normalizer" : "custom_normalizer"
             },
         }
     },
