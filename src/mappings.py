@@ -23,9 +23,9 @@ COMMON_SETTINGS = {
             "custom_normalizer": {
                 "type": "custom",
                 "char_filter": [],
-                "filter": "lowercase"
+                "filter": "lowercase",
             }
-        }
+        },
     }
 }
 
@@ -184,10 +184,7 @@ _MEMBERS_MAPPING = {
                 "analyzer": "autocomplete",
                 "fields": {"raw": {"type": "keyword"}},
             },
-            "searchText": {
-                "type": "keyword",
-                "normalizer" : "custom_normalizer"
-            },
+            "searchText": {"type": "keyword", "normalizer": "custom_normalizer"},
         }
     },
 }
