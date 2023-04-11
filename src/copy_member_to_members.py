@@ -43,9 +43,29 @@ def main():
     es_client.ingest.put_pipeline(
         PIPELINE_ID,
         {
-            "description": "Removes the 'virtualStudies' field",
+            "description": "Copy all members",
             "processors": [
-                {"remove": {"field": "virtualStudies", "ignore_missing": True}}
+                {
+                    "remove": {
+                        "description": "Removes the 'virtualStudies' field",
+                        "field": "virtualStudies",
+                        "ignore_missing": True,
+                    }
+                },
+                {
+                    "script": {
+                        "lang": "painless",
+                        "source": """
+                            def searchText = [];
+                            for (def x : [ctx['firstName'], ctx['lastName'], ctx['institution']]) {
+                                if (x != null && !x.trim().isEmpty() && !searchText.contains(x.toLowerCase())) {
+                                    searchText.add(x.toLowerCase())
+                                }
+                            ctx['searchText'] = searchText
+                            }
+                            """,
+                    }
+                },
             ],
         },
     )

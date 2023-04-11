@@ -8,3 +8,7 @@ __pycache__
 README.md
 run.sh
 Jenkinsfile
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.vscode

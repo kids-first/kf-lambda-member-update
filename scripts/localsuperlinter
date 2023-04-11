@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# At the root of the project you can run this command to simulate super linter (you may want to tweak the env vars).
+docker run --rm \
+  -e RUN_LOCAL=true \
+  -e USE_FIND_ALGORITHM=true \
+  -e VALIDATE_PYTHON=true \
+  -e VALIDATE_PYTHON_BLACK=true \
+  -e VALIDATE_PYTHON_FLAKE=true \
+  -e IGNORE_GENERATED_FILES=true \
+  -v /"${PWD}":/tmp/lint \
+  -w /tmp/lint \
+    github/super-linter
