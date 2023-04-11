@@ -56,11 +56,11 @@ def main():
                     "script": {
                         "lang": "painless",
                         "source": """
-                            def searchText = [];   
+                            def searchText = [];
                             for (def x : [ctx['firstName'], ctx['lastName'], ctx['institution']]) {
-                                if (x != null && !x.trim().isEmpty() && !searchText.contains(x.toLowerCase())) { 
+                                if (x != null && !x.trim().isEmpty() && !searchText.contains(x.toLowerCase())) {
                                     searchText.add(x.toLowerCase())
-                                } 
+                                }
                             ctx['searchText'] = searchText
                             }
                             """,
