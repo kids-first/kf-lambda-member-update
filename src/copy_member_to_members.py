@@ -61,8 +61,12 @@ def main():
                                 if (x != null && !x.trim().isEmpty() && !searchText.contains(x.toLowerCase())) {
                                     searchText.add(x.toLowerCase())
                                 }
-                            ctx['searchText'] = searchText
                             }
+                            if (searchText.length > 0) {
+                                def joined = String.join(" ", searchText);
+                                searchText.add(joined.toLowerCase())
+                            }
+                            ctx['searchText'] = searchText
                             """,
                     }
                 },
